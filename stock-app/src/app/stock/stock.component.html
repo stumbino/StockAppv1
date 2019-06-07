@@ -1,0 +1,37 @@
+
+<h1>JavaScript Exercise</h1>
+<form [formGroup]="stockSelection">
+  Enter one or more symbols to track: <input type="text" formControlName="stockSymbol"/><br>
+  <span><button (click)="updateNow()">Update Now</button></span>
+  <span><button (click)="clearHistory()">Clear History</button><br></span>
+  <button (click)="startAutomaticUpdates()">{{ this.updateTitle }}</button>
+  <select formControlName="occurance">
+    <option value="5">Every 5 Seconds</option>
+    <option value="10">Every 10 Seconds</option>
+    <option value="15">Every 15 Seconds</option>
+    <option value="20">Every 20 Seconds</option>
+    <option value="25">Every 25 Seconds</option>
+  </select><br>
+  Next update in {{ stockSelection.value.occurance }} seconds
+  <br>
+  <h1><b>Quote Information</b></h1>
+  This data is current as of {{ this.today | date:'M/d/yy, hh:mm:ss a'}}
+  <table>
+    <thead>
+     <tr> 
+      <th>Symbol</th>
+      <th>Price</th>
+      <th>Price Date</th>
+    </tr>
+    </thead>
+   <tbody>
+    <ng-container *ngFor="let stock of stockQuotes; let i=index">
+      <tr>
+        <td>{{ stock.symbol }}</td>
+        <td>{{ stock.lastTradePrice | currency:'USD':true:'1.2-2' }} </td>
+        <td>{{ stock.date| date:'M/d/yy, hh:mm:ss a' }}</td>
+      </tr>
+  </ng-container>
+  </tbody>
+  </table>
+  </form>
