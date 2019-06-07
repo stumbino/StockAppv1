@@ -9,7 +9,7 @@ export class StockService {
   constructor(  private httpClient: HttpClient) { }
 
   getStockInformation(stockSymbol: string) {
-    const url = `http://candidateservices.allegient.com/randomQuote/quote?symbols=${stockSymbol}`;
+    const url = ``;
     return this.httpClient.get(url).toPromise();
   }
 }
